@@ -56,26 +56,43 @@ export const DEFAULT_CURRENCY = "LKR";
 export const ROUTE_PATHS = {
   HOME: "/",
   SHOP: "/shop",
+  CATEGORY: "/category/:slug",
   PRODUCT_DETAILS: "/product/:slug",
   CART: "/cart",
   CHECKOUT: "/checkout",
+  ORDER_SUCCESS: "/order-success",
   WISHLIST: "/wishlist",
 
   LOGIN: "/login",
   REGISTER: "/register",
   FORGOT_PASSWORD: "/forgot-password",
+  ADMIN_LOGIN: "/admin/login",
 
-  ACCOUNT_PROFILE: "/account/profile",
-  ACCOUNT_ORDERS: "/account/orders",
+  ACCOUNT: "/account",
   ACCOUNT_ORDER_DETAILS: "/account/orders/:id",
-  ACCOUNT_ADDRESSES: "/account/addresses",
+
+  LEGAL: "/legal",
 
   ADMIN_DASHBOARD: "/admin",
   ADMIN_PRODUCTS: "/admin/products",
-  ADMIN_CATEGORIES: "/admin/categories",
-  ADMIN_ORDERS: "/admin/orders",
-  ADMIN_CUSTOMERS: "/admin/customers",
+  ADMIN_PRODUCT_FORM: "/admin/products/new",
+  ADMIN_PRODUCT_EDIT: "/admin/products/:id",
+
   ADMIN_INVENTORY: "/admin/inventory",
+  ADMIN_LOW_STOCK: "/admin/inventory/low-stock",
+  ADMIN_STOCK_ADJUST: "/admin/inventory/adjust",
+
+  ADMIN_CATEGORIES: "/admin/categories",
+  ADMIN_CATEGORY_FORM: "/admin/categories/new",
+  ADMIN_CATEGORY_EDIT: "/admin/categories/:id",
+
+  ADMIN_ORDERS: "/admin/orders",
+  ADMIN_ORDER_DETAILS: "/admin/orders/:id",
+  ADMIN_ORDER_BOARD: "/admin/orders/board",
+
+  ADMIN_CUSTOMERS: "/admin/customers",
+  ADMIN_CUSTOMER_DETAILS: "/admin/customers/:id",
+  ADMIN_CUSTOMER_ORDERS: "/admin/customers/:id/orders",
 
   UNAUTHORIZED: "/unauthorized",
   NOT_FOUND: "*",
