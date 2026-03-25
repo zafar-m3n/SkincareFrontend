@@ -1,51 +1,25 @@
 import React from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import routeConfig from "./routeConfig";
-import { ROUTE_PATHS } from "@/lib/constants";
-import token from "@/lib/utilities";
+import PrivateRoute from "@/components/navigation/PrivateRoute";
+import PublicRoute from "@/components/navigation/PublicRoute";
 
-const AccessControl = ({ access = "public", roles = [], children }) => {
-  const isAuthenticated = token.isAuthenticated();
-  const user = token.getUserData();
-  const userRole = user?.role || null;
+const renderRouteElement = ({ element: PageComponent, layout: LayoutComponent, access = "public", roles = [] }) => {
+  const pageElement = (
+    <LayoutComponent>
+      <PageComponent />
+    </LayoutComponent>
+  );
 
-  if (access === "public") {
-    return children;
+  if (access === "private") {
+    return <PrivateRoute roles={roles}>{pageElement}</PrivateRoute>;
   }
 
   if (access === "guest") {
-    if (!isAuthenticated) return children;
-
-    if (userRole === "admin") {
-      return <Navigate to={ROUTE_PATHS.ADMIN_DASHBOARD} replace />;
-    }
-
-    return <Navigate to={ROUTE_PATHS.HOME} replace />;
+    return <PublicRoute restricted>{pageElement}</PublicRoute>;
   }
 
-  if (access === "private") {
-    if (!isAuthenticated) {
-      return <Navigate to={ROUTE_PATHS.LOGIN} replace />;
-    }
-
-    if (roles.length > 0 && !roles.includes(userRole)) {
-      return <Navigate to={ROUTE_PATHS.UNAUTHORIZED} replace />;
-    }
-
-    return children;
-  }
-
-  return children;
-};
-
-const renderRouteElement = ({ element: PageComponent, layout: LayoutComponent, access, roles }) => {
-  return (
-    <AccessControl access={access} roles={roles}>
-      <LayoutComponent>
-        <PageComponent />
-      </LayoutComponent>
-    </AccessControl>
-  );
+  return <PublicRoute restricted={false}>{pageElement}</PublicRoute>;
 };
 
 const AppRouter = () => {
