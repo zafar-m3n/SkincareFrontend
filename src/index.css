@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/* =========================
+   FONTS
+   ========================= */
+
+/* ---------- GARET (Primary UI Font) ---------- */
+@font-face {
+  font-family: "Garet";
+  src: url("./assets/fonts/Garet-Font/WOFF2/Garet-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Garet";
+  src: url("./assets/fonts/Garet-Font/WOFF2/Garet-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Garet";
+  src: url("./assets/fonts/Garet-Font/WOFF2/Garet-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Garet";
+  src: url("./assets/fonts/Garet-Font/WOFF2/Garet-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* ---------- AMOUN (Display / Heading Font) ---------- */
+@font-face {
+  font-family: "Amoun";
+  src: url("./assets/fonts/Amoun-BF65e591417cee3.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* =========================
+   THEME (Tailwind v4)
+   ========================= */
+
+@theme {
+  --font-primary: "Garet", sans-serif;
+  --font-display: "Amoun", sans-serif;
+
+  --color-primary: #fafafa;
+  --color-secondary: #010101;
+  --color-accent: #00679a;
+}
+
+/* =========================
+   BASE STYLES
+   ========================= */
+
+html {
+  font-family: var(--font-primary);
+}
+
+body {
+  background-color: #ffffff;
+  color: #111827;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Headings use display font */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+}
+
+/* =========================
+   PHONE INPUT (LIGHT ONLY)
+   ========================= */
+
+.react-international-phone-input-container {
+  border-radius: 0.25rem;
+  border: 1px solid #d1d5db !important;
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+}
+
+.react-international-phone-input-container input {
+  border: none !important;
+  outline: none !important;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.25rem !important;
+}
+
+.react-international-phone-input-container input::placeholder {
+  color: #6b7280 !important;
+}
+
+.react-international-phone-country-selector-button {
+  background-color: transparent !important;
+  color: #1f2937 !important;
+  border-right: 1px solid #d1d5db !important;
+  border-left: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+.react-international-phone-country-selector-dropdown {
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+  border: 1px solid #d1d5db !important;
+}
+
+.react-international-phone-country-selector-dropdown__list-item {
+  color: #1f2937 !important;
+}
+
+.react-international-phone-country-selector-dropdown__list-item--focused {
+  background-color: #f3f4f6 !important;
+}
