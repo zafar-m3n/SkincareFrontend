@@ -1,32 +1,26 @@
-import { useCallback, useState } from "react";
+import { DEFAULT_CURRENCY, DEFAULT_LOCALE } from "@/lib/constants";
 
-const useToggle = (initialValue = false) => {
-  const [value, setValue] = useState(Boolean(initialValue));
+const formatCurrency = (
+  value,
+  { currency = DEFAULT_CURRENCY, locale = DEFAULT_LOCALE, minimumFractionDigits = 2, maximumFractionDigits = 2 } = {},
+) => {
+  const numericValue = Number(value);
 
-  const toggle = useCallback(() => {
-    setValue((prev) => !prev);
-  }, []);
+  if (!Number.isFinite(numericValue)) {
+    return new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency,
+      minimumFractionDigits,
+      maximumFractionDigits,
+    }).format(0);
+  }
 
-  const setTrue = useCallback(() => {
-    setValue(true);
-  }, []);
-
-  const setFalse = useCallback(() => {
-    setValue(false);
-  }, []);
-
-  const reset = useCallback(() => {
-    setValue(Boolean(initialValue));
-  }, [initialValue]);
-
-  return {
-    value,
-    setValue,
-    toggle,
-    setTrue,
-    setFalse,
-    reset,
-  };
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency,
+    minimumFractionDigits,
+    maximumFractionDigits,
+  }).format(numericValue);
 };
 
-export default useToggle;
+export default formatCurrency;
