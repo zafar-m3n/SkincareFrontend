@@ -10,6 +10,7 @@
   src: url("./assets/fonts/Garet-Font/WOFF2/Garet-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -17,6 +18,7 @@
   src: url("./assets/fonts/Garet-Font/WOFF2/Garet-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -24,6 +26,7 @@
   src: url("./assets/fonts/Garet-Font/WOFF2/Garet-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -31,6 +34,7 @@
   src: url("./assets/fonts/Garet-Font/WOFF2/Garet-Light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
 }
 
 /* ---------- AMOUN (Display / Heading Font) ---------- */
@@ -39,19 +43,24 @@
   src: url("./assets/fonts/Amoun-BF65e591417cee3.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 /* =========================
    THEME (Tailwind v4)
+   4 colours only
    ========================= */
 
 @theme {
+  /* Fonts */
   --font-primary: "Garet", sans-serif;
   --font-display: "Amoun", sans-serif;
 
-  --color-primary: #fafafa;
-  --color-secondary: #010101;
-  --color-accent: #00679a;
+  /* Brand Colours */
+  --color-primary: #fffaf7; /* soft warm background */
+  --color-secondary: #221f1c; /* deep text / dark */
+  --color-accent: #c78f7b; /* premium skincare accent */
+  --color-surface: #f4ece7; /* cards / soft sections */
 }
 
 /* =========================
@@ -60,13 +69,28 @@
 
 html {
   font-family: var(--font-primary);
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: #ffffff;
-  color: #111827;
   margin: 0;
   min-height: 100vh;
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  font-family: var(--font-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 /* Headings use display font */
@@ -76,54 +100,109 @@ h3,
 h4,
 h5,
 h6 {
+  margin: 0;
   font-family: var(--font-display);
+  color: var(--color-secondary);
+  line-height: 1.1;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-accent) 22%, white);
+  color: var(--color-secondary);
 }
 
 /* =========================
-   PHONE INPUT (LIGHT ONLY)
+   PHONE INPUT
    ========================= */
 
 .react-international-phone-input-container {
-  border-radius: 0.25rem;
-  border: 1px solid #d1d5db !important;
-  background-color: #ffffff !important;
-  color: #1f2937 !important;
-  transition: all 0.2s ease-in-out;
   width: 100%;
+  border: 1px solid #d8d2cc !important;
+  border-radius: 0.5rem;
+  background-color: #ffffff !important;
+  color: var(--color-secondary) !important;
+  transition:
+    border-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+  overflow: hidden;
+}
+
+.react-international-phone-input-container:focus-within {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, white);
 }
 
 .react-international-phone-input-container input {
+  width: 100%;
   border: none !important;
   outline: none !important;
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  font-size: 1rem;
-  border-radius: 0.25rem !important;
+  background-color: #ffffff !important;
+  color: var(--color-secondary) !important;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.95rem;
+  border-radius: 0 !important;
 }
 
 .react-international-phone-input-container input::placeholder {
-  color: #6b7280 !important;
+  color: #8b8179 !important;
 }
 
 .react-international-phone-country-selector-button {
-  background-color: transparent !important;
-  color: #1f2937 !important;
-  border-right: 1px solid #d1d5db !important;
-  border-left: none !important;
-  border-top: none !important;
-  border-bottom: none !important;
+  border: none !important;
+  border-right: 1px solid #d8d2cc !important;
+  background-color: #ffffff !important;
+  color: var(--color-secondary) !important;
+  padding-inline: 0.75rem !important;
+}
+
+.react-international-phone-country-selector-button:hover {
+  background-color: var(--color-surface) !important;
 }
 
 .react-international-phone-country-selector-dropdown {
   background-color: #ffffff !important;
-  color: #1f2937 !important;
-  border: 1px solid #d1d5db !important;
+  color: var(--color-secondary) !important;
+  border: 1px solid #d8d2cc !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 12px 32px rgba(34, 31, 28, 0.08) !important;
+  overflow: hidden;
 }
 
 .react-international-phone-country-selector-dropdown__list-item {
-  color: #1f2937 !important;
+  color: var(--color-secondary) !important;
 }
 
-.react-international-phone-country-selector-dropdown__list-item--focused {
-  background-color: #f3f4f6 !important;
+.react-international-phone-country-selector-dropdown__list-item--focused,
+.react-international-phone-country-selector-dropdown__list-item:hover {
+  background-color: var(--color-surface) !important;
+}
+
+/* =========================
+   REACT SELECT TWEAKS
+   ========================= */
+
+.react-select__menu {
+  z-index: 9999 !important;
 }
